@@ -1,0 +1,119 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    box-sizing: border-box;
+    background-color: #f0f0f0; /* Màu nền xám nhạt */
+}
+#dialog{
+    position: fixed;
+    top:0;
+    bottom: 0;
+    left:  0;
+    right: 0;
+    background-color: #ccc;
+    opacity: 0.7;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 10;
+}
+#dialog  .diaglog__content{
+
+}
+.diaglog__content i{
+    font-size: 100px;
+    animation: rotate 5s linear infinite;
+    color: darkred;
+}
+header {
+    background-color: #007bff; /* Xanh dương */
+    color: #fff;
+    padding: 10px 0;
+ 
+    height:42px ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+header h1{
+    font-size: 20px;
+}
+#container {
+    
+    max-width: 800px;
+    margin: 0 auto;
+    margin-top: 42px;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+#container .container__body{
+    position: relative;
+    width:  80%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.container__body .container__body__content{
+    position: relative;
+    width: 50%;
+    padding-bottom: 50%;
+}
+
+.postdata_img{
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.postdata_img img{
+    width: 80%;
+    height: 80%;
+    object-fit:contain;
+}
+#container__postdata .postdata_button{
+    display: flex;
+    justify-content: center;
+}
+input[type="file"] {
+  display: none;
+}
+
+
+.postdata_button .custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    margin-right: 20px;
+    font-size: 16px;
+    font-weight: 300;
+  }
+.postdata_button input[type=file]{
+    display: none;
+}
+
+.postdata_button button{
+    cursor: pointer;
+    background-color: transparent;
+    border: 1px solid #ccc;
+    padding: 6px 12px;
+    margin-right: 20px;
+    font-size: 16px;
+    font-weight: 300;
+}
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
+}
