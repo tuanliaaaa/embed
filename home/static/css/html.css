@@ -78,6 +78,13 @@ header h1{
     height: 80%;
     object-fit:contain;
 }
+#ok{
+    display: none;
+    align-items: center;
+}
+#ok p{
+
+}
 #container__postdata .postdata_button{
     display: flex;
     justify-content: center;

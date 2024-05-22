@@ -19,10 +19,14 @@
     </header>
     <div id="container">
         <div class="container__body">
+            <div id="ok">
+                <p></p>
+            </div>
             <div class="container__body__content">
-                <div class="postdata_img">
+                <div class="postdata_img" >
                     <img id="img-show" src="/static/img/upload.png" alt="upload img">
                 </div>
+                
             </div>
            
         </div>
@@ -40,6 +44,10 @@
 </body>
 <script>
     function previewImage(event) {
+        var buttonChangeText=document.getElementById('changetext');
+        buttonChangeText.disabled = false;
+        document.querySelector(".container__body .container__body__content").style.display="block";
+        document.querySelector("#ok").style.display="none";
         var input = event.target;
         var preview = document.getElementById('img-show');
         // Check if any file is selected
@@ -62,11 +70,39 @@
     document.getElementById('file-upload').addEventListener('change', previewImage);
     function submitToText(){
         event.preventDefault();
-        
+        let file=document.getElementById('file-upload').files[0];
         var buttonChangeText=document.getElementById('changetext');
         buttonChangeText.disabled = true;
         var dialogElement = document.getElementById('dialog');
         dialogElement.style.display="flex";
+        const xhr = new XMLHttpRequest();
+        // Set up a POST request
+        xhr.open('POST', '/home/handle', true);
+
+        // Set up headers (optional)
+
+        xhr.onload = function() {
+            if (xhr.status >= 200 && xhr.status < 300) {
+                const response = JSON.parse(xhr.responseText);
+                // Handle the response (e.g., display predicted label and confidence)
+                console.log(response);
+                document.getElementById('ok').querySelector('p').innerHTML=response['prediction'];
+                dialogElement.style.display="none";
+                document.getElementById('ok').style.display="flex";
+                document.querySelector(".container__body .container__body__content").style.display="none";
+                alert(`Predicted Label: ${response['prediction']}`);
+            } else {
+                alert('An error occurred while processing the image.');
+            }
+           
+        };
+
+        // Create a FormData object and append the image file
+        const formData = new FormData();
+        formData.append('image', file);
+
+        // Send the request
+        xhr.send(formData);
     }
     document.getElementById('changetext').addEventListener('click',submitToText);
 </script>
